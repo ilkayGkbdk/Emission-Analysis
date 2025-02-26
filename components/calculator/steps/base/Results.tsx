@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { BaseResults, ResultSection, EmissionStatus } from '@/types/calculator'
+import { BaseResults, ResultSection } from '@/types/calculator'
 import { getEmissionAnalysis } from '@/utils/emissionAnalysis'
 
 interface ResultsProps {
@@ -10,7 +10,7 @@ interface ResultsProps {
     onReset: () => void
 }
 
-export default function Results({results, type, onReset}: ResultsProps) {
+export default function Results({results, type}: ResultsProps) {
     const formatValue = (value: number | null): string => {
         if (value === null || value === 0) return '-'
         return value.toFixed(2)

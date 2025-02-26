@@ -25,7 +25,6 @@ export default function BaseStep({
                                      label,
                                      unit,
                                      helper,
-                                     calculatorType
                                  }: BaseStepProps) {
     return (
         <StepContainer

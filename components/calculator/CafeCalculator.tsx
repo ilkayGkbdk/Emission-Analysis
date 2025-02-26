@@ -86,6 +86,7 @@ export default function CafeCalculator() {
             setCurrentStep('food')
         }
         else if (currentStep === 'food') {
+            /*
             const waterWaste = {
                 beef: parseFloat(food.beefAmount || '0') * COEFFICIENTS.beefWater,
                 lamb: parseFloat(food.lambAmount || '0') * COEFFICIENTS.lambWater,
@@ -101,7 +102,9 @@ export default function CafeCalculator() {
                 pork: parseFloat(food.porkAmount || '0') * COEFFICIENTS.porkWater,
             }
 
-            const totalWaterWaste = Object.values(waterWaste).reduce((acc, curr) => acc + curr, 0)
+             */
+
+            //const totalWaterWaste = Object.values(waterWaste).reduce((acc, curr) => acc + curr, 0)
             addToCO2(0) // Yemek CO2'si eklemiyoruz artık
             calculateFinalResults()
             setCurrentStep('results')
