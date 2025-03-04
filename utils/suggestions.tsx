@@ -1,7 +1,11 @@
-import { BaseResults } from '@/types/calculator'
+import {
+    CafeCalculationResults,
+    PersonalCalculationResults,
+    SchoolCalculationResults
+} from '@/types/calculator'
 import { Suggestion } from '@/types/calculator'
 
-export const getEmissionSuggestions = (results: BaseResults, type: 'personal' | 'school' | 'cafe'): Suggestion[] => {
+export const getEmissionSuggestions = (results: PersonalCalculationResults | SchoolCalculationResults | CafeCalculationResults, type: 'personal' | 'school' | 'cafe'): Suggestion[] => {
     const suggestions: Suggestion[] = []
 
     // Elektrik önerileri
@@ -58,8 +62,60 @@ export const getEmissionSuggestions = (results: BaseResults, type: 'personal' | 
         })
     }
 
-    // Diğer öneriler...
-    // ... (Araç, atık, yiyecek önerileri benzer şekilde eklenebilir)
+    // Araç kullanım önerileri
+    const vehicleThreshold = type === 'personal' ? 200 : type === 'school' ? 1000 : 700
+    if ('totalFuelCO2' in results && results.totalFuelCO2 && results.totalFuelCO2 > vehicleThreshold) {
+        suggestions.push({
+            category: 'Araç Kullanımı',
+            tips: type === 'personal' ? [
+                'Toplu taşıma veya bisiklet kullanarak karbon ayak izinizi azaltın.',
+                'Araç paylaşımı yaparak yakıt tüketimini azaltın.',
+                'Elektrikli veya hibrit araçları tercih edin.',
+                'Lastik basınçlarını düzenli kontrol ederek yakıt verimliliğini artırın.',
+                'Gereksiz yere motoru çalışır halde bırakmayın.'
+            ] : type === 'school' ? [
+                'Okul servislerinde yakıt tasarruflu veya elektrikli araçlar kullanın.',
+                'Öğrencilere bisiklet kullanımı teşvik edin.',
+                'Öğretmen ve personel için araç paylaşım programları oluşturun.',
+                'Gereksiz araç kullanımını azaltmak için toplu taşıma teşvikleri sunun.',
+                'Servis güzergahlarını optimize ederek yakıt tüketimini azaltın.'
+            ] : [
+                'Restoran teslimatlarını elektrikli veya bisikletli kuryeler ile yapın.',
+                'Çalışanlarınız için toplu taşıma destekleri sağlayın.',
+                'Müşterilerin toplu taşımayı kullanmasını teşvik eden kampanyalar düzenleyin.',
+                'Araç paylaşım sistemlerini işletme çalışanları için kullanın.',
+                'Araçların düzenli bakımını yaparak yakıt tüketimini azaltın.'
+            ]
+        })
+    }
+
+    // Atık yönetimi önerileri (okul ve kafe için)
+    if ((type === 'school' || type === 'cafe') && "generalWasteCO2" in results && results.generalWasteCO2 && results.generalWasteCO2 > 300) {
+        suggestions.push({
+            category: 'Atık Yönetimi',
+            tips: [
+                'Geri dönüşüm kutularını yaygınlaştırın.',
+                'Çalışanları ve müşterileri atık azaltma konusunda bilinçlendirin.',
+                'Kağıt tüketimini azaltmak için dijital kaynaklar kullanın.',
+                'Yiyecek atıklarını kompost yaparak değerlendirin.',
+                'Tek kullanımlık plastikleri yasaklayarak atık miktarını azaltın.'
+            ]
+        })
+    }
+
+    // Yiyecek tüketimi önerileri (sadece kafeler için)
+    if (type === 'cafe' && "totalFoodWaterWaste" in results && results.totalFoodWaterWaste && results.totalFoodWaterWaste > 200) {
+        suggestions.push({
+            category: 'Yiyecek Tüketimi',
+            tips: [
+                'Yerel ve mevsimlik ürünler kullanarak karbon ayak izinizi azaltın.',
+                'Gıda israfını azaltmak için porsiyon kontrolü yapın.',
+                'Fazla yiyecekleri bağışlayarak değerlendirilmelerini sağlayın.',
+                'Bitkisel bazlı menü seçenekleri sunarak sürdürülebilirliği artırın.',
+                'Tek kullanımlık plastiklerden kaçının ve geri dönüştürülebilir ambalajlar kullanın.'
+            ]
+        })
+    }
 
     return suggestions
 }

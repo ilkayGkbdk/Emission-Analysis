@@ -122,18 +122,18 @@ export default function CafeCalculator() {
 
         // Su atığı hesaplaması
         const foodWaste = {
-            beef_WaterWaste: parseFloat(food.beefAmount || '0') * COEFFICIENTS.beefWater,
-            lamb_WaterWaste: parseFloat(food.lambAmount || '0') * COEFFICIENTS.lambWater,
-            chicken_WaterWaste: parseFloat(food.chickenAmount || '0') * COEFFICIENTS.chickenWater,
-            vegetable_WaterWaste: parseFloat(food.vegetableAmount || '0') * COEFFICIENTS.vegetableWater,
-            fruit_WaterWaste: parseFloat(food.fruitAmount || '0') * COEFFICIENTS.fruitWater,
-            grain_WaterWaste: parseFloat(food.grainAmount || '0') * COEFFICIENTS.grainWater,
-            legumes_WaterWaste: parseFloat(food.legumesAmount || '0') * COEFFICIENTS.legumesWater,
-            nut_WaterWaste: parseFloat(food.nutAmount || '0') * COEFFICIENTS.nutWater,
-            milk_WaterWaste: parseFloat(food.milkAmount || '0') * COEFFICIENTS.milkWater,
-            egg_WaterWaste: parseFloat(food.eggAmount || '0') * COEFFICIENTS.eggWater,
-            butter_WaterWaste: parseFloat(food.butterAmount || '0') * COEFFICIENTS.butterWater,
-            pork_WaterWaste: parseFloat(food.porkAmount || '0') * COEFFICIENTS.porkWater,
+            beef_WaterWaste: parseFloat(food.beefAmount || '0') * COEFFICIENTS.foodWater.beefWater,
+            lamb_WaterWaste: parseFloat(food.lambAmount || '0') * COEFFICIENTS.foodWater.lambWater,
+            chicken_WaterWaste: parseFloat(food.chickenAmount || '0') * COEFFICIENTS.foodWater.chickenWater,
+            vegetable_WaterWaste: parseFloat(food.vegetableAmount || '0') * COEFFICIENTS.foodWater.vegetableWater,
+            fruit_WaterWaste: parseFloat(food.fruitAmount || '0') * COEFFICIENTS.foodWater.fruitWater,
+            grain_WaterWaste: parseFloat(food.grainAmount || '0') * COEFFICIENTS.foodWater.grainWater,
+            legumes_WaterWaste: parseFloat(food.legumesAmount || '0') * COEFFICIENTS.foodWater.legumesWater,
+            nut_WaterWaste: parseFloat(food.nutAmount || '0') * COEFFICIENTS.foodWater.nutWater,
+            milk_WaterWaste: parseFloat(food.milkAmount || '0') * COEFFICIENTS.foodWater.milkWater,
+            egg_WaterWaste: parseFloat(food.eggAmount || '0') * COEFFICIENTS.foodWater.eggWater,
+            butter_WaterWaste: parseFloat(food.butterAmount || '0') * COEFFICIENTS.foodWater.butterWater,
+            pork_WaterWaste: parseFloat(food.porkAmount || '0') * COEFFICIENTS.foodWater.porkWater,
         }
         const totalFoodWaterWaste = Object.values(foodWaste).reduce((acc, curr) => acc + curr, 0)
 
