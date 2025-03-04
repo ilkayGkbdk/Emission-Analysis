@@ -5,7 +5,6 @@ import Navbar from '@/app/components/Navbar'
 import Footer from '@/app/components/Footer'
 import ClientProvider from '@/components/providers/ClientProvider'
 import { ClerkProvider } from '@clerk/nextjs'
-import { trTR } from '@clerk/localizations'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +20,6 @@ export default function RootLayout({
 }) {
     return (
         <ClerkProvider
-            localization={trTR}
             appearance={{
                 variables: {
                     colorPrimary: "#15803d", // green-700

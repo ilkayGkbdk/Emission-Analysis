@@ -61,11 +61,11 @@ export default function SchoolCalculator() {
         totalWasteM3: null,
         waterCO2: null,
         waterM3: null,
-        fuelCO2: null,
-        fuelM3: null,
         gasolineCO2: null,
         dieselCO2: null,
         electricVehicleCO2: null,
+        totalFuelCO2: null,
+        totalFuelM3: null,
         totalCO2: null,
         totalM3: null
     })
@@ -207,11 +207,11 @@ export default function SchoolCalculator() {
             }
         })
 
-        const fuelCO2 = gasolineCO2 + dieselCO2 + electricVehicleCO2
-        const fuelM3 = fuelCO2 * COEFFICIENTS.m3Conversion
+        const totalFuelCO2 = gasolineCO2 + dieselCO2 + electricVehicleCO2
+        const totalFuelM3 = totalFuelCO2 * COEFFICIENTS.m3Conversion
 
         // Toplam hesaplama
-        const totalCO2 = electricityCO2 + heatingCO2 + totalWasteCO2 + waterCO2 + fuelCO2
+        const totalCO2 = electricityCO2 + heatingCO2 + totalWasteCO2 + waterCO2 + totalFuelCO2
         const totalM3 = totalCO2 * COEFFICIENTS.m3Conversion
 
         setResults({
@@ -241,8 +241,8 @@ export default function SchoolCalculator() {
             gasolineCO2,
             dieselCO2,
             electricVehicleCO2,
-            fuelCO2,
-            fuelM3,
+            totalFuelCO2,
+            totalFuelM3,
 
             // Toplam
             totalCO2,
@@ -321,11 +321,11 @@ export default function SchoolCalculator() {
             totalWasteM3: null,
             waterCO2: null,
             waterM3: null,
-            fuelCO2: null,
-            fuelM3: null,
             gasolineCO2: null,
             dieselCO2: null,
             electricVehicleCO2: null,
+            totalFuelCO2: null,
+            totalFuelM3: null,
             totalCO2: null,
             totalM3: null
         })

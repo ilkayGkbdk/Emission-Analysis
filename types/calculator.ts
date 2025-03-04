@@ -1,9 +1,9 @@
 // Temel tipler
+export type PersonalStep = 'electricity' | 'heating' | 'fuel' | 'results'
+export type SchoolStep = PersonalStep | 'waste' | 'water'
+export type CafeStep = 'electricity' | 'heating' | 'waste' | 'water' | 'food' | 'results'
 export type HeatingType = 'naturalGas' | 'coal' | 'wood' | 'lpg' | null
 export type FuelType = 'gasoline' | 'diesel' | 'electric'
-export type Step = 'electricity' | 'heating' | 'fuel' | 'results'
-export type SchoolStep = Step | 'waste' | 'water'
-export type CafeStep = 'electricity' | 'heating' | 'waste' | 'water' | 'food' | 'results'
 
 // Araç tipleri
 export interface BaseVehicle {
@@ -52,18 +52,16 @@ export interface BaseResults {
     electricityM3: number | null;
     heatingCO2: number | null;
     heatingM3: number | null;
-    generalWasteCO2: number | null;
-    generalWasteM3: number | null;
-    organicWasteCO2: number | null;
-    organicWasteM3: number | null;
-    recyclingCO2: number | null;
-    recyclingM3: number | null;
-    totalWasteCO2: number | null;
-    totalWasteM3: number | null;
-    waterCO2: number | null;
-    waterM3: number | null;
     totalCO2: number | null;
     totalM3: number | null;
+}
+
+export interface FuelResults {
+    gasolineCO2: number | null;
+    dieselCO2: number | null;
+    electricVehicleCO2: number | null;
+    totalFuelCO2: number | null;
+    totalFuelM3: number | null;
 }
 
 export interface WasteResults {
@@ -83,36 +81,26 @@ export interface WaterResults {
 }
 
 export interface FoodResults {
-    meatFoodCO2: number | null
-    meatFoodM3: number | null
-    chickenFoodCO2: number | null
-    chickenFoodM3: number | null
-    vegetableFoodCO2: number | null
-    vegetableFoodM3: number | null
-    totalFoodCO2: number | null
-    totalFoodM3: number | null
+    foodWaste: {
+        beef_WaterWaste: number;
+        lamb_WaterWaste: number;
+        chicken_WaterWaste: number;
+        vegetable_WaterWaste: number;
+        fruit_WaterWaste: number;
+        grain_WaterWaste: number;
+        legumes_WaterWaste: number;
+        nut_WaterWaste: number;
+        milk_WaterWaste: number;
+        egg_WaterWaste: number;
+        butter_WaterWaste: number;
+        pork_WaterWaste: number;
+    }
+    totalFoodWaterWaste: number;
 }
 
-export interface CalculationResults extends BaseResults {}
-export interface SchoolCalculationResults extends BaseResults, WasteResults, WaterResults {}
-export interface CafeCalculationResults extends BaseResults, WasteResults, WaterResults, FoodResults {
-    // Su atığı hesaplamaları
-    waterWaste: {
-        beef: number;
-        lamb: number;
-        chicken: number;
-        vegetable: number;
-        fruit: number;
-        grain: number;
-        legumes: number;
-        nut: number;
-        milk: number;
-        egg: number;
-        butter: number;
-        pork: number;
-    };
-    totalWaterWaste: number;
-}
+export interface PersonalCalculationResults extends BaseResults, FuelResults {}
+export interface SchoolCalculationResults extends BaseResults, FuelResults, WasteResults, WaterResults {}
+export interface CafeCalculationResults extends BaseResults, WasteResults, WaterResults, FoodResults {}
 
 // Görüntüleme tipleri
 export interface ResultValue {
@@ -156,7 +144,7 @@ export interface CalculationHistory {
     id: string
     date: string
     type: 'personal' | 'school' | 'cafe'
-    results: CalculationResults | SchoolCalculationResults | CafeCalculationResults
+    results: PersonalCalculationResults | SchoolCalculationResults | CafeCalculationResults
 }
 
 // Bileşen prop tipleri

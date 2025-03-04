@@ -3,11 +3,9 @@
 import React, { useState } from 'react'
 import {
     HeatingType,
-    Step,
     PersonalVehicle,
-    CalculationResults,
     FuelType,
-    VehicleField
+    VehicleField, PersonalCalculationResults, PersonalStep
 } from '@/types/calculator'
 import { COEFFICIENTS } from '@/constants/coefficients'
 import StepIndicator from './StepIndicator'
@@ -22,7 +20,7 @@ import History from './History'
 
 export default function PersonalCalculator() {
     // Adım kontrolü için state
-    const [currentStep, setCurrentStep] = useState<Step>('electricity')
+    const [currentStep, setCurrentStep] = useState<PersonalStep>('electricity')
 
     // Elektrik için state
     const [monthlyElectricity, setMonthlyElectricity] = useState('')
@@ -36,16 +34,16 @@ export default function PersonalCalculator() {
     const [vehicleCount, setVehicleCount] = useState('')
 
     // Sonuçlar için state
-    const [results, setResults] = useState<CalculationResults>({
+    const [results, setResults] = useState<PersonalCalculationResults>({
         electricityCO2: null,
         electricityM3: null,
         heatingCO2: null,
         heatingM3: null,
-        fuelCO2: null,
-        fuelM3: null,
         gasolineCO2: null,
         dieselCO2: null,
         electricVehicleCO2: null,
+        totalFuelCO2: null,
+        totalFuelM3: null,
         totalCO2: null,
         totalM3: null
     })
@@ -160,11 +158,11 @@ export default function PersonalCalculator() {
             electricityM3: null,
             heatingCO2: null,
             heatingM3: null,
-            fuelCO2: null,
-            fuelM3: null,
             gasolineCO2: null,
             dieselCO2: null,
             electricVehicleCO2: null,
+            totalFuelCO2: null,
+            totalFuelM3: null,
             totalCO2: null,
             totalM3: null
         })
@@ -198,11 +196,11 @@ export default function PersonalCalculator() {
             }
         })
 
-        const fuelCO2 = gasolineCO2 + dieselCO2 + electricVehicleCO2
-        const fuelM3 = fuelCO2 * COEFFICIENTS.m3Conversion
+        const totalFuelCO2 = gasolineCO2 + dieselCO2 + electricVehicleCO2
+        const totalFuelM3 = totalFuelCO2 * COEFFICIENTS.m3Conversion
 
         // Toplam hesaplama
-        const totalCO2 = electricityCO2 + heatingCO2 + fuelCO2
+        const totalCO2 = electricityCO2 + heatingCO2 + totalFuelCO2
         const totalM3 = totalCO2 * COEFFICIENTS.m3Conversion
 
         const newResults = {
@@ -218,8 +216,8 @@ export default function PersonalCalculator() {
             gasolineCO2,
             dieselCO2,
             electricVehicleCO2,
-            fuelCO2,
-            fuelM3,
+            totalFuelCO2,
+            totalFuelM3,
 
             // Toplam
             totalCO2,

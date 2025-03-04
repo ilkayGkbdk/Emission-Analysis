@@ -16,7 +16,7 @@ export default function Results({results, type}: ResultsProps) {
         return value.toFixed(2)
     }
 
-    const analysis = getEmissionAnalysis(results, type)
+    const analysis = getEmissionAnalysis(results, type);
 
     const renderSection = (section: ResultSection) => {
         if (!section.values.some(v => v.value > 0)) return null;

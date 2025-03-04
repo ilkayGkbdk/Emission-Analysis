@@ -1,17 +1,17 @@
 'use client'
 
 import React from 'react'
-import {Step, SchoolStep, CafeStep} from '@/types/calculator'
+import {PersonalStep, SchoolStep, CafeStep} from '@/types/calculator'
 
 interface StepIndicatorProps {
-    currentStep: Step | SchoolStep | CafeStep
+    currentStep: PersonalStep | SchoolStep | CafeStep
     calculatorType: 'personal' | 'school' | 'cafe'
 }
 
-type AllSteps = Step | SchoolStep | CafeStep
+type AllSteps = PersonalStep | SchoolStep | CafeStep
 
 export default function StepIndicator({ currentStep, calculatorType }: StepIndicatorProps) {
-    const personalSteps: { id: Step; label: string }[] = [
+    const personalSteps: { id: PersonalStep; label: string }[] = [
         { id: 'electricity', label: 'Elektrik' },
         { id: 'heating', label: 'Isınma' },
         { id: 'fuel', label: 'Yakıt' },

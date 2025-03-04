@@ -1,7 +1,13 @@
-import { BaseResults, EmissionAnalysis, CafeCalculationResults, FoodResults, ResultSection } from '@/types/calculator'
+import {
+    BaseResults,
+    EmissionAnalysis,
+    CafeCalculationResults,
+    ResultSection,
+    SchoolCalculationResults, PersonalCalculationResults
+} from '@/types/calculator'
 import { getEmissionSuggestions } from './suggestions'
 
-export const getEmissionAnalysis = (results: BaseResults, type: 'personal' | 'school' | 'cafe'): EmissionAnalysis => {
+export const getEmissionAnalysis = (results: PersonalCalculationResults | SchoolCalculationResults | CafeCalculationResults, type: 'personal' | 'school' | 'cafe'): EmissionAnalysis => {
     const total = results.totalCO2 || 0
     const suggestions = getEmissionSuggestions(results, type)
 
@@ -33,7 +39,7 @@ export const getEmissionAnalysis = (results: BaseResults, type: 'personal' | 'sc
     // Elektrik bölümü
     if (results.electricityCO2) {
         sections.push({
-            title: 'Elektrik Tüketimi',
+            title: 'Elektrik Emisyonları',
             values: [{
                 label: 'Elektrik',
                 value: results.electricityCO2,
@@ -45,43 +51,13 @@ export const getEmissionAnalysis = (results: BaseResults, type: 'personal' | 'sc
     // Isınma bölümü
     if (results.heatingCO2) {
         sections.push({
-            title: 'Isınma Tüketimi',
+            title: 'Isınma Emisyonları',
             values: [{
                 label: 'Isınma',
                 value: results.heatingCO2,
                 volume: results.heatingM3 || 0
             }]
         })
-    }
-
-    // Kafe için yiyecek emisyonları
-    if (type === 'cafe' && isCafeResults(results)) {
-        if (results.meatFoodCO2 || results.chickenFoodCO2 || results.vegetableFoodCO2) {
-            sections.push({
-                title: 'Yiyecek Emisyonları',
-                values: [
-                    {
-                        label: 'Kırmızı Et',
-                        value: results.meatFoodCO2 || 0,
-                        volume: results.meatFoodM3 || 0
-                    },
-                    {
-                        label: 'Beyaz Et',
-                        value: results.chickenFoodCO2 || 0,
-                        volume: results.chickenFoodM3 || 0
-                    },
-                    {
-                        label: 'Sebze',
-                        value: results.vegetableFoodCO2 || 0,
-                        volume: results.vegetableFoodM3 || 0
-                    }
-                ],
-                total: {
-                    co2: results.totalFoodCO2 || 0,
-                    volume: results.totalFoodM3 || 0
-                }
-            })
-        }
     }
 
     // Atık emisyonları
@@ -126,49 +102,42 @@ export const getEmissionAnalysis = (results: BaseResults, type: 'personal' | 'sc
         })
     }
 
-    // Su atığı (sadece kafe için)
-    if (type === 'cafe' && isCafeResults(results)) {
-        type WaterWasteKey = keyof CafeCalculationResults['waterWaste'];
+    // Yiyecek Su atığı (sadece kafe için)
+    if (type === 'cafe' && 'foodWaste' in results) {
+        type FoodWaterWasteKey = keyof CafeCalculationResults['foodWaste'];
 
-        const foodItems: { key: WaterWasteKey; label: string }[] = [
-            { key: 'beef', label: 'Kırmızı Et' },
-            { key: 'lamb', label: 'Kuzu Eti' },
-            { key: 'chicken', label: 'Tavuk' },
-            { key: 'vegetable', label: 'Sebze' },
-            { key: 'fruit', label: 'Meyve' },
-            { key: 'grain', label: 'Tahıl' },
-            { key: 'legumes', label: 'Baklagiller' },
-            { key: 'nut', label: 'Kuruyemiş' },
-            { key: 'milk', label: 'Süt' },
-            { key: 'egg', label: 'Yumurta' },
-            { key: 'butter', label: 'Tereyağı' },
-            { key: 'pork', label: 'Domuz Eti' }
+        const foodItems: { key: FoodWaterWasteKey; label: string }[] = [
+            { key: 'beef_WaterWaste', label: 'Kırmızı Et' },
+            { key: 'lamb_WaterWaste', label: 'Kuzu Eti' },
+            { key: 'chicken_WaterWaste', label: 'Tavuk' },
+            { key: 'vegetable_WaterWaste', label: 'Sebze' },
+            { key: 'fruit_WaterWaste', label: 'Meyve' },
+            { key: 'grain_WaterWaste', label: 'Tahıl' },
+            { key: 'legumes_WaterWaste', label: 'Baklagiller' },
+            { key: 'nut_WaterWaste', label: 'Kuruyemiş' },
+            { key: 'milk_WaterWaste', label: 'Süt' },
+            { key: 'egg_WaterWaste', label: 'Yumurta' },
+            { key: 'butter_WaterWaste', label: 'Tereyağı' },
+            { key: 'pork_WaterWaste', label: 'Domuz Eti' }
         ];
 
         sections.push({
             title: 'Yiyecek Su Atığı',
             values: foodItems.map(item => ({
                 label: item.label,
-                value: results.waterWaste[item.key],
+                value: results.foodWaste[item.key],
                 volume: 0,
-                unit: 'L'
+                unit: 'Litre'
             })),
             total: {
                 co2: 0,
                 volume: 0,
-                value: results.totalWaterWaste,
-                unit: 'L'
+                value: results.totalFoodWaterWaste,
+                unit: 'Litre'
             },
             layout: 'grid' // İki sütunlu görünüm için
         })
     }
 
     return { status, sections, suggestions }
-}
-
-// Type guard fonksiyonu
-function isCafeResults(results: BaseResults): results is CafeCalculationResults {
-    return 'meatFoodCO2' in results &&
-        'chickenFoodCO2' in results &&
-        'vegetableFoodCO2' in results
 }

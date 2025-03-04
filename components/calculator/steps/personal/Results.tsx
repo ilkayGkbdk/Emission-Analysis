@@ -2,10 +2,10 @@
 
 import React from 'react'
 import BaseResults from '../base/Results'
-import { CalculationResults } from '@/types/calculator'
+import { PersonalCalculationResults } from '@/types/calculator'
 
 interface ResultsProps {
-    results: CalculationResults
+    results: PersonalCalculationResults
     onReset: () => void
 }
 
