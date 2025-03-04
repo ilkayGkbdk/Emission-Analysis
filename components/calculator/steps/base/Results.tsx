@@ -1,11 +1,16 @@
 'use client'
 
 import React from 'react'
-import { BaseResults, ResultSection } from '@/types/calculator'
+import {
+    CafeCalculationResults,
+    PersonalCalculationResults,
+    ResultSection,
+    SchoolCalculationResults
+} from '@/types/calculator'
 import { getEmissionAnalysis } from '@/utils/emissionAnalysis'
 
 interface ResultsProps {
-    results: BaseResults
+    results: PersonalCalculationResults | SchoolCalculationResults | CafeCalculationResults
     type: 'personal' | 'school' | 'cafe'
     onReset: () => void
 }
