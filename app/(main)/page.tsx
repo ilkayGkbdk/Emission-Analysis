@@ -7,6 +7,14 @@ import { useState } from 'react';
 import { COEFFICIENTS } from '@/constants/coefficients';
 import { useUser, SignInButton } from '@clerk/nextjs';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { TooltipProps } from 'recharts';
+import { useMemo } from 'react'; // useMemo'yu ekliyoruz
+
+// chartData için tip tanımı
+interface ChartData {
+    name: string;
+    value: number;
+}
 
 export default function Home() {
     // Bireysel hesaplama state'leri
@@ -50,8 +58,7 @@ export default function Home() {
         back: { rotateY: 180, opacity: 1, transition: { duration: 0.6 } },
     };
 
-    // Pasta grafiği için veri
-    const chartData = [
+    const chartData: ChartData[] = [
         { name: 'Elektrik', value: results.electricityCO2 ? results.electricityCO2 * 12 : 0 },
         { name: 'Isınma', value: results.heatingCO2 || 0 },
         { name: 'Araçlar', value: results.totalFuelCO2 || 0 },
@@ -61,14 +68,17 @@ export default function Home() {
     const COLORS = ['#34d399', '#10b981', '#059669'];
 
     // Özel tooltip
-    const CustomTooltip = ({ active, payload }: any) => {
-        if (active && payload && payload.length) {
-            const total = chartData.reduce((sum, entry) => sum + entry.value, 0);
+    type CustomTooltipProps = TooltipProps<number, string>;
+
+    const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
+        const total = useMemo(() => chartData.reduce((sum, entry) => sum + entry.value, 0), [chartData]);
+
+        if (active && payload && payload.length > 0 && payload[0]?.value !== undefined) {
             const percentage = ((payload[0].value / total) * 100).toFixed(1);
             return (
                 <div className="bg-white p-2 rounded-lg shadow-md border border-green-200">
                     <p className="text-green-800 font-semibold">{payload[0].name}</p>
-                    <p className="text-gray-600">{`${payload[0].value.toFixed(2)} kg CO2/yıl`}</p>
+                    <p className="text-gray-600">{`${Number(payload[0].value).toFixed(2)} kg CO2/yıl`}</p>
                     <p className="text-green-600 text-sm">{`%${percentage}`}</p>
                 </div>
             );
