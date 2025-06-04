@@ -5,6 +5,16 @@ export type CafeStep = 'electricity' | 'heating' | 'waste' | 'water' | 'food' | 
 export type HeatingType = 'naturalGas' | 'coal' | 'wood' | 'lpg' | null
 export type FuelType = 'gasoline' | 'diesel' | 'electric'
 
+// Fabrika tipleri
+export type AutomotiveSteps = 'form' | 'electricity' | 'naturalGas' | 'water' | 'rawUsage' | 'rawTransportation' | 'vehicleDistribution' | 'waste' | 'staffTransportation' | 'results';
+export type CementSteps = 'electricity' | 'naturalGas' | 'usage' | 'logistics' | 'waste' | 'results';
+export type ChemicalsSteps = 'electricity' | 'naturalGas' | 'usage' | 'logistics' | 'waste' | 'staffTransportation' | 'results';
+export type ElectronicsSteps = 'electricity' | 'naturalGas' | 'water' | 'usage' | 'logistics' | 'staffTransportation' | 'results';
+export type FoodSteps = 'electricity' | 'naturalGas' | 'water' | 'usage' | 'logistics' | 'staffTransportation' | 'results';
+export type MetalsSteps = 'electricity' | 'naturalGas' | 'water' | 'rawUsage' | 'waste' | 'logistics' | 'results';
+export type PackagingSteps = 'electricity' | 'naturalGas' | 'water' | 'rawUsage' | 'waste' | 'logistics' | 'results';
+export type TextilesSteps = 'electricity' | 'naturalGas' | 'water' | 'usage' | 'rawTransportation' | 'productTransportation' | 'waste' | 'staffTransportation' | 'results';
+
 // Araç tipleri
 export interface BaseVehicle {
     id: number
@@ -29,7 +39,7 @@ export interface SchoolWaste {
     recyclingAmount: string
 }
 
-export interface CafeWaste extends SchoolWaste {}
+export type CafeWaste = SchoolWaste
 
 export interface CafeFood {
     beefAmount: string
@@ -101,6 +111,28 @@ export interface FoodResults {
 export interface PersonalCalculationResults extends BaseResults, FuelResults {}
 export interface SchoolCalculationResults extends BaseResults, FuelResults, WasteResults, WaterResults {}
 export interface CafeCalculationResults extends BaseResults, WasteResults, WaterResults, FoodResults {}
+
+// Fabrika sonuçları
+export interface AutomotiveCalculationResults {
+    electricityCO2: number | null;
+    electricityM3: number | null;
+    naturalGasCO2: number | null;
+    naturalGasM3: number | null;
+    waterCO2: number | null;
+    waterM3: number | null;
+    rawUsageCO2: number | null;
+    rawUsageM3: number | null;
+    rawTransportationCO2: number | null;
+    rawTransportationM3: number | null;
+    vehicleDistributionCO2: number | null;
+    vehicleDistributionM3: number | null;
+    wasteCO2: number | null;
+    wasteM3: number | null;
+    staffTransportationCO2: number | null;
+    staffTransportationM3: number | null;
+    totalCO2: number | null;
+    totalM3: number | null;
+}
 
 // Görüntüleme tipleri
 export interface ResultValue {
