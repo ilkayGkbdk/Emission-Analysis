@@ -416,63 +416,63 @@ const AutomotiveCalculator = () => {
     }, [currentStep])
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-50">
             <div className="absolute inset-0 bg-white opacity-5" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 24 24' fill='%23dfe8fe'%3E%3Cpath d='M20 4h-3V4-1c0-.55-.45-1-1H9c-.55 0-1 .45-1 1v1H6c-1.1 0-2 .9-2 2v12c0 1.1 .9 2 2c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-2 14H8v-2zm0-4H8v2z'/%3E%3C/svg%3E")`
+                backgroundImage: `url('data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5e7eb'%3E%3Cpath d='M20 4h-6c-1.1 0-2 .9-2 2v1c-1.1 0-2 .9-2 2h-2V3c0-1.1.9-2 2-2h6v2h2c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2h-12v-2h6c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2h-2V5h6c1.1 0 2-.9 2-2v-1z'/%3E%3C/svg%3E')`
             }} />
-            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-6 lg:px-8">
                 {/* Başlık ve Yardım Butonu */}
                 <motion.div
-                    className="text-center mb-10"
-                    initial={{ opacity: 0, y: -20 }}
+                    className="text-center mb-8"
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.6 }}
                 >
                     <TypeAnimation
                         sequence={[
-                            'Otomotiv Emisyon Hesaplama',
-                            1000,
-                            'Sürdürülebilir Üretim Analizi',
-                            1000
+                            'Otomotiv Karbon Ayak İzi Analizi',
+                            750,
+                            'Sürdürülebilirlik Raporlama Platformu',
+                            750
                         ]}
                         wrapper="h1"
                         repeat={Infinity}
-                        className="text-4xl md:text-5xl font-bold text-blue-900"
+                        className="text-xl font-extrabold text-gray-900"
                     />
-                    <p className="text-md text-blue-700 mt-4">
-                        Fabrikanızın karbon ayak izini resmi ve doğru bir şekilde hesaplayın. Aşağıdaki form, çevresel etkilerinizi analiz etmek için tasarlanmıştır.
+                    <p className="text-sm text-gray-600 mt-3">
+                        Bu form, fabrikanızın karbon emisyonlarını resmi standartlara uygun şekilde hesaplar. Tüm alanları doğru ve eksiksiz doldurun.
                     </p>
                     <motion.button
                         onClick={() => setIsHelpModalOpen(true)}
-                        className="mt-6 px-6 py-2 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors shadow-md"
+                        className="mt-4 px-4 py-1.5 bg-gray-800 text-white rounded-md text-sm font-semibold hover:bg-gray-900 transition-colors"
                         variants={buttonVariants}
                         whileHover="hover"
                         whileTap="tap"
                     >
-                        Hangi Verilere İhtiyacınız Var?
+                        Veri Gereksinimleri
                     </motion.button>
                 </motion.div>
 
                 {/* Form veya Sonuçlar */}
                 <motion.div
                     ref={formRef}
-                    className="bg-white text-blue-900 rounded-lg shadow-xl p-10 mt-8 border border-blue-200"
+                    className="bg-white p-6 rounded-md shadow-md border border-gray-300"
                     variants={cardVariants}
                     initial="hidden"
                     animate="visible"
                 >
                     {currentStep === 'form' && (
                         <div>
-                            <h2 className="text-2xl font-bold text-blue-900 mb-6">Karbon Ayak İzi Hesaplama Formu</h2>
-                            <p className="text-blue-700 mb-8">Lütfen aşağıdaki bilgileri eksiksiz ve doğru şekilde doldurun. Verileriniz, karbon ayak izi hesaplamasında kullanılacaktır.</p>
+                            <h2 className="text-lg font-extrabold text-gray-900 mb-4">Karbon Ayak İzi Veri Girişi</h2>
+                            <p className="text-sm text-gray-600 mb-4">Aşağıdaki bilgileri eksiksiz sağlayın.</p>
 
                             {/* Elektrik Tüketimi */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.electricity} alt="Elektrik ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Elektrik Tüketimi</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.electricity} alt="Elektrik ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Elektrik Tüketimi</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık elektrik tüketiminizi belirtin.</p>
+                                <p className="text-xs text-gray-600 mb-2">Yıllık elektrik tüketimi.</p>
                                 <div className="relative">
                                     <input
                                         id="electricity"
@@ -482,51 +482,49 @@ const AutomotiveCalculator = () => {
                                         value={electricity}
                                         onChange={(e) => setElectricity(e.target.value)}
                                         onKeyDown={(e) => handleKeyDown(e, 'naturalGas')}
-                                        className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                        placeholder={`Yıllık elektrik tüketimi (${electricityUnit})`}
+                                        className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                        placeholder={`Tüketim (${electricityUnit})`}
                                     />
                                     <select
                                         value={electricityUnit}
                                         onChange={(e) => setElectricityUnit(e.target.value as 'kWh' | 'MWh')}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-blue-50 rounded-lg text-blue-900"
+                                        className="absolute right-1 top-1/2 -translate-y-1/2 p-1 bg-gray-50 rounded-md text-gray-900 text-xs"
                                     >
                                         <option value="kWh">kWh</option>
                                         <option value="MWh">MWh</option>
                                     </select>
                                 </div>
-                                {errors.electricity && <p className="text-red-600 text-sm mt-2">{errors.electricity}</p>}
+                                {errors.electricity && <p className="text-red-600 text-xs mt-1">{errors.electricity}</p>}
                             </div>
 
                             {/* Doğal Gaz Tüketimi */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.naturalGas} alt="Doğal gaz ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Doğal Gaz Tüketimi</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.naturalGas} alt="Doğal gaz ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Doğal Gaz Tüketimi</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık doğal gaz tüketiminizi m³ cinsinden belirtin.</p>
-                                <div className="relative">
-                                    <input
-                                        id="naturalGas"
-                                        type="number"
-                                        min="0"
-                                        step="0.01"
-                                        value={naturalGas}
-                                        onChange={(e) => setNaturalGas(e.target.value)}
-                                        onKeyDown={(e) => handleKeyDown(e, 'water')}
-                                        className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                        placeholder="Yıllık doğal gaz tüketimi (m³)"
-                                    />
-                                </div>
-                                {errors.naturalGas && <p className="text-red-600 text-sm mt-2">{errors.naturalGas}</p>}
+                                <p className="text-xs text-gray-600 mb-2">Yıllık doğal gaz tüketimi (m³).</p>
+                                <input
+                                    id="naturalGas"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value={naturalGas}
+                                    onChange={(e) => setNaturalGas(e.target.value)}
+                                    onKeyDown={(e) => handleKeyDown(e, 'water')}
+                                    className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                    placeholder="Tüketim (m³)"
+                                />
+                                {errors.naturalGas && <p className="text-red-600 text-xs mt-1">{errors.naturalGas}</p>}
                             </div>
 
                             {/* Su Tüketimi */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.water} alt="Su ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Su Tüketimi</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.water} alt="Su ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Su Tüketimi</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık su tüketiminizi belirtin.</p>
+                                <p className="text-xs text-gray-600 mb-2">Yıllık su tüketimi.</p>
                                 <div className="relative">
                                     <input
                                         id="water"
@@ -536,30 +534,30 @@ const AutomotiveCalculator = () => {
                                         value={water}
                                         onChange={(e) => setWater(e.target.value)}
                                         onKeyDown={(e) => handleKeyDown(e, 'rawSteelUsage')}
-                                        className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                        placeholder={`Yıllık su tüketimi (${waterUnit})`}
+                                        className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                        placeholder={`Tüketim (${waterUnit})`}
                                     />
                                     <select
                                         value={waterUnit}
                                         onChange={(e) => setWaterUnit(e.target.value as 'm³' | 'litre')}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-blue-50 rounded-lg text-blue-900"
+                                        className="absolute right-1 top-1/2 -translate-y-1/2 p-1 bg-gray-50 rounded-md text-gray-900 text-xs"
                                     >
                                         <option value="m³">m³</option>
                                         <option value="litre">litre</option>
                                     </select>
                                 </div>
-                                {errors.water && <p className="text-red-600 text-sm mt-2">{errors.water}</p>}
+                                {errors.water && <p className="text-red-600 text-xs mt-1">{errors.water}</p>}
                             </div>
 
                             {/* Hammadde Kullanımı */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.rawUsage} alt="Hammadde ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Hammadde Kullanımı</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.rawUsage} alt="Hammadde ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Hammadde Kullanımı</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık hammadde kullanımınızı ton cinsinden belirtin.</p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <div className="relative">
+                                <p className="text-xs text-gray-600 mb-2">Yıllık hammadde tüketimi (ton).</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                                    <div>
                                         <input
                                             id="rawSteelUsage"
                                             type="number"
@@ -568,12 +566,12 @@ const AutomotiveCalculator = () => {
                                             value={rawSteelUsage}
                                             onChange={(e) => setRawSteelUsage(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'rawAluminumUsage')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Yıllık çelik kullanımı (ton)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Çelik (ton)"
                                         />
-                                        {errors.rawSteelUsage && <p className="text-red-600 text-sm mt-2">{errors.rawSteelUsage}</p>}
+                                        {errors.rawSteelUsage && <p className="text-red-600 text-xs mt-1">{errors.rawSteelUsage}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="rawAluminumUsage"
                                             type="number"
@@ -582,12 +580,12 @@ const AutomotiveCalculator = () => {
                                             value={rawAluminumUsage}
                                             onChange={(e) => setRawAluminiumUsage(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'rawPlasticUsage')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Yıllık alüminyum kullanımı (ton)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Alüminyum (ton)"
                                         />
-                                        {errors.rawAluminumUsage && <p className="text-red-600 text-sm mt-2">{errors.rawAluminumUsage}</p>}
+                                        {errors.rawAluminumUsage && <p className="text-red-600 text-xs mt-1">{errors.rawAluminumUsage}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="rawPlasticUsage"
                                             type="number"
@@ -596,12 +594,12 @@ const AutomotiveCalculator = () => {
                                             value={rawPlasticUsage}
                                             onChange={(e) => setRawPlasticUsage(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'rawCoatingAndPaintChemicals')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Yıllık plastik kullanımı (ton)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Plastik (ton)"
                                         />
-                                        {errors.rawPlasticUsage && <p className="text-red-600 text-sm mt-2">{errors.rawPlasticUsage}</p>}
+                                        {errors.rawPlasticUsage && <p className="text-red-600 text-xs mt-1">{errors.rawPlasticUsage}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="rawCoatingAndPaintChemicals"
                                             type="number"
@@ -610,129 +608,129 @@ const AutomotiveCalculator = () => {
                                             value={rawCoatingAndPaintChemicals}
                                             onChange={(e) => setRawCoatingAndPaintChemicals(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'rawTransLand')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Kaplama ve boya kimyasalları (ton)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Kaplama kimyasalları (ton)"
                                         />
-                                        {errors.rawCoatingAndPaintChemicals && <p className="text-red-600 text-sm mt-2">{errors.rawCoatingAndPaintChemicals}</p>}
+                                        {errors.rawCoatingAndPaintChemicals && <p className="text-red-600 text-xs mt-1">{errors.rawCoatingAndPaintChemicals}</p>}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Hammadde Taşıma */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.rawTransportation} alt="Hammadde taşıma ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Hammadde Taşıma</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.rawTransportation} alt="Hammadde taşıma ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Hammadde Taşıma</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık hammadde taşıma mesafelerinizi ton-km cinsinden belirtin.</p>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <div className="relative">
+                                <p className="text-xs text-gray-600 mb-2">Yıllık taşıma yükleri (ton-km).</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                    <div>
                                         <input
                                             id="rawTransLand"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={rawTransLand}
                                             onChange={(e) => setRawTransLand(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'rawTransSea')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Kara taşıma (ton-km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Kara (ton-km)"
                                         />
-                                        {errors.rawTransLand && <p className="text-red-600 text-sm mt-2">{errors.rawTransLand}</p>}
+                                        {errors.rawTransLand && <p className="text-red-600 text-xs mt-1">{errors.rawTransLand}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="rawTransSea"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={rawTransSea}
                                             onChange={(e) => setRawTransSea(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'rawTransRailway')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Deniz taşıma (ton-km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Deniz (ton-km)"
                                         />
-                                        {errors.rawTransSea && <p className="text-red-600 text-sm mt-2">{errors.rawTransSea}</p>}
+                                        {errors.rawTransSea && <p className="text-red-600 text-xs mt-1">{errors.rawTransSea}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="rawTransRailway"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={rawTransRailway}
                                             onChange={(e) => setRawTransRailway(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'vehicleDistrLand')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Demiryolu taşıma (ton-km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Demiryolu (ton-km)"
                                         />
-                                        {errors.rawTransRailway && <p className="text-red-600 text-sm mt-2">{errors.rawTransRailway}</p>}
+                                        {errors.rawTransRailway && <p className="text-red-600 text-xs mt-1">{errors.rawTransRailway}</p>}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Araç Dağıtımı */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.vehicleDistribution} alt="Araç dağıtım ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Araç Dağıtımı</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.vehicleDistribution} alt="Araç dağıtım ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Araç Dağıtımı</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık araç dağıtım mesafelerinizi ton-km cinsinden belirtin.</p>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <div className="relative">
+                                <p className="text-xs text-gray-600 mb-2">Yıllık dağıtım mesafeleri (ton-km).</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                    <div>
                                         <input
                                             id="vehicleDistrLand"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={vehicleDistrLand}
                                             onChange={(e) => setVehicleDistrLand(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'vehicleDistrSea')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Kara dağıtım (ton-km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Kara (ton-km)"
                                         />
-                                        {errors.vehicleDistrLand && <p className="text-red-600 text-sm mt-2">{errors.vehicleDistrLand}</p>}
+                                        {errors.vehicleDistrLand && <p className="text-red-600 text-xs mt-1">{errors.vehicleDistrLand}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="vehicleDistrSea"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={vehicleDistrSea}
                                             onChange={(e) => setVehicleDistrSea(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'vehicleDistrRailway')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Deniz dağıtım (ton-km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Deniz (ton-km)"
                                         />
-                                        {errors.vehicleDistrSea && <p className="text-red-600 text-sm mt-2">{errors.vehicleDistrSea}</p>}
+                                        {errors.vehicleDistrSea && <p className="text-red-600 text-xs mt-1">{errors.vehicleDistrSea}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="vehicleDistrRailway"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={vehicleDistrRailway}
                                             onChange={(e) => setVehicleDistrRailway(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'wasteMetal')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Demiryolu dağıtım (ton-km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Demiryolu (ton-km)"
                                         />
-                                        {errors.vehicleDistrRailway && <p className="text-red-600 text-sm mt-2">{errors.vehicleDistrRailway}</p>}
+                                        {errors.vehicleDistrRailway && <p className="text-red-600 text-xs mt-1">{errors.vehicleDistrRailway}</p>}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Atık ve Fire */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.waste} alt="Atık ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Atık ve Fire</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.waste} alt="Atık ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Atık ve Fire</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık atık miktarınızı ton cinsinden belirtin.</p>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <div className="relative">
+                                <p className="text-xs text-gray-600 mb-2">Yıllık atık miktarı (ton).</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                    <div>
                                         <input
                                             id="wasteMetal"
                                             type="number"
@@ -741,12 +739,12 @@ const AutomotiveCalculator = () => {
                                             value={wasteMetal}
                                             onChange={(e) => setWasteMetal(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'wastePlastic')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Metal atık (ton)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Metal (ton)"
                                         />
-                                        {errors.wasteMetal && <p className="text-red-600 text-sm mt-2">{errors.wasteMetal}</p>}
+                                        {errors.wasteMetal && <p className="text-red-600 text-xs mt-1">{errors.wasteMetal}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="wastePlastic"
                                             type="number"
@@ -755,12 +753,12 @@ const AutomotiveCalculator = () => {
                                             value={wastePlastic}
                                             onChange={(e) => setWastePlastic(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'wasteChemicals')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Plastik atık (ton)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Plastik (ton)"
                                         />
-                                        {errors.wastePlastic && <p className="text-red-600 text-sm mt-2">{errors.wastePlastic}</p>}
+                                        {errors.wastePlastic && <p className="text-red-600 text-xs mt-1">{errors.wastePlastic}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="wasteChemicals"
                                             type="number"
@@ -769,65 +767,64 @@ const AutomotiveCalculator = () => {
                                             value={wasteChemicals}
                                             onChange={(e) => setWasteChemicals(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'staffTransPersonal')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Kimyasal atık (ton)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Kimyasal (ton)"
                                         />
-                                        {errors.wasteChemicals && <p className="text-red-600 text-sm mt-2">{errors.wasteChemicals}</p>}
+                                        {errors.wasteChemicals && <p className="text-red-600 text-xs mt-1">{errors.wasteChemicals}</p>}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Personel Ulaşımı */}
-                            <div className="mb-8 border border-blue-200 rounded-lg p-6 bg-blue-50">
-                                <div className="flex items-center mb-4">
-                                    <img src={icons.staffTransportation} alt="Personel ulaşım ikonu" className="w-6 h-6 mr-2" />
-                                    <h3 className="text-lg font-semibold text-blue-900">Personel Ulaşımı</h3>
+                            <div className="mb-4 border border-gray-300 rounded-md p-3 bg-gray-50">
+                                <div className="flex items-center mb-2">
+                                    <img src={icons.staffTransportation} alt="Personel ulaşım ikonu" className="w-4 h-4 mr-2" />
+                                    <h3 className="text-sm font-semibold text-gray-900">Personel Ulaşımı</h3>
                                 </div>
-                                <p className="text-blue-700 mb-4">Yıllık personel ulaşım mesafelerinizi km cinsinden belirtin.</p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="relative">
+                                <p className="text-xs text-gray-600 mb-2">Yıllık ulaşım mesafeleri (km).</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                    <div>
                                         <input
                                             id="staffTransPersonal"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={staffTransPersonal}
                                             onChange={(e) => setStaffTransPersonal(e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(e, 'staffTransCompany')}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Bireysel ulaşım (km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Bireysel (km)"
                                         />
-                                        {errors.staffTransPersonal && <p className="text-red-600 text-sm mt-2">{errors.staffTransPersonal}</p>}
+                                        {errors.staffTransPersonal && <p className="text-red-600 text-xs mt-1">{errors.staffTransPersonal}</p>}
                                     </div>
-                                    <div className="relative">
+                                    <div>
                                         <input
                                             id="staffTransCompany"
                                             type="number"
                                             min="0"
-                                            step="0.01"
+                                            step="0.1"
                                             value={staffTransCompany}
                                             onChange={(e) => setStaffTransCompany(e.target.value)}
-                                            onKeyDown={(e) => handleKeyDown(e)}
-                                            className="w-full p-3 border border-blue-200 rounded-lg text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                                            placeholder="Şirket ulaşımı (km)"
+                                            className="w-full p-1.5 border border-gray-300 rounded-md text-gray-900 text-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                            placeholder="Şirket (km)"
                                         />
-                                        {errors.staffTransCompany && <p className="text-red-600 text-sm mt-2">{errors.staffTransCompany}</p>}
+                                        {errors.staffTransCompany && <p className="text-red-600 text-xs mt-1">{errors.staffTransCompany}</p>}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Gönder Butonu */}
                             <motion.div
-                                className="flex justify-center mt-8"
+                                className="flex justify-end"
                                 variants={buttonVariants}
                                 whileHover="hover"
                                 whileTap="tap"
                             >
                                 <button
                                     onClick={handleSubmit}
-                                    className="px-8 py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors shadow-md"
+                                    className="px-4 py-1.5 bg-gray-800 text-white rounded-md text-sm font-semibold hover:bg-gray-900 transition"
                                 >
-                                    Hesaplamayı Tamamla
+                                    Analizi Tamamla
                                 </button>
                             </motion.div>
                         </div>
@@ -835,47 +832,48 @@ const AutomotiveCalculator = () => {
 
                     {currentStep === 'results' && (
                         <div>
-                            <div className="flex items-center mb-4">
-                                <img src={icons.results} alt="Sonuçlar ikonu" className="w-6 h-6 mr-2" />
-                                <h2 className="text-2xl font-bold text-blue-900">Hesaplama Sonuçları</h2>
+                            <div className="flex items-center mb-3">
+                                <img src={icons.results} alt="Sonuçlar ikonu" className="w-4 h-4 mr-2" />
+                                <h3 className="text-lg font-semibold text-gray-900">Analiz Sonuçları</h3>
                             </div>
-                            <p className="text-blue-700 mb-6">Aşağıda, fabrikalarınıza ait karbon ayak izi hesaplamalarının detaylı sonuçları ve öneriler yer almaktadır.</p>
+                            <p className="text-sm text-gray-600 mb-4">Fabrikanızın karbon ayak izine ilişkin detaylı rapor.</p>
 
                             {/* Karbon Skoru */}
                             <motion.div
-                                className="flex items-center mb-8"
+                                className="flex items-center mb-4"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ duration: 0.6 }}
+                                transition={{ duration: 0.4 }}
                             >
-                                <div className={`px-4 py-2 rounded-full text-white font-semibold ${calculateCarbonScore().color}`}>
+                                <div className={`px-2 py-1 text-xs text-white font-semibold rounded-full ${calculateCarbonScore().color}`}>
                                     Skor: {calculateCarbonScore().score}
                                 </div>
-                                <p className="ml-4 text-blue-700">{calculateCarbonScore().text}</p>
+                                <p className="ml-2 text-sm text-gray-600">{calculateCarbonScore().text}</p>
                             </motion.div>
 
                             {/* Grafikler */}
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                 <motion.div
-                                    className="bg-white p-6 rounded-lg shadow-md border border-blue-200"
-                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    className="bg-white p-3 rounded-md border border-gray-200"
+                                    initial={{ opacity: 0, scale: 0.96 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.6, delay: 0.2 }}
+                                    transition={{ duration: 0.4, delay: 0.2 }}
                                 >
-                                    <h3 className="text-lg font-semibold text-blue-900 mb-4">Katkı Yüzdeleri</h3>
-                                    <div className="h-64">
+                                    <h4 className="text-xs font-semibold text-gray-900 mb-2">Katkı Yüzdeleri</h4>
+                                    <div className="h-48">
                                         <Pie
                                             data={pieData}
                                             options={{
                                                 responsive: true,
                                                 maintainAspectRatio: false,
                                                 plugins: {
-                                                    legend: { position: 'bottom', labels: { color: '#1E3A8A' } },
-                                                    tooltip: { backgroundColor: '#1E3A8A', bodyColor: '#ffffff' },
+                                                    legend: { position: 'top', labels: { color: '#1f2937', font: { size: 10 } } },
+                                                    tooltip: { backgroundColor: '#fff', borderColor: '#1f2937', borderWidth: 1, bodyColor: '#1f2937', bodyFont: { size: 10 } },
                                                     datalabels: {
-                                                        color: '#ffffff',
+                                                        color: '#1f2937',
+                                                        font: { size: 8 },
                                                         formatter: (value: number, context: any) => {
-                                                            const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
+                                                            const total = context.dataset.data.reduce((sum: number, val: number) => sum + val, 0)
                                                             return `${((value / total) * 100).toFixed(1)}%`
                                                         }
                                                     }
@@ -885,25 +883,32 @@ const AutomotiveCalculator = () => {
                                     </div>
                                 </motion.div>
                                 <motion.div
-                                    className="bg-white p-6 rounded-lg shadow-md border border-blue-200"
-                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    className="bg-white p-3 rounded-md border border-gray-200"
+                                    initial={{ opacity: 0, scale: 0.96 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.6, delay: 0.4 }}
+                                    transition={{ duration: 0.4, delay: 0.4 }}
                                 >
-                                    <h3 className="text-lg font-semibold text-blue-900 mb-4">CO2 Emisyonları</h3>
-                                    <div className="h-64">
+                                    <h4 className="text-xs font-semibold text-gray-900 mb-2">Karbon Emisyonları</h4>
+                                    <div className="h-48">
                                         <Bar
                                             data={barData}
                                             options={{
                                                 responsive: true,
                                                 maintainAspectRatio: false,
                                                 scales: {
-                                                    y: { beginAtZero: true, title: { display: true, text: 'CO2 (kg)', color: '#1E3A8A' } },
-                                                    x: { title: { display: true, text: 'Kategori', color: '#1E3A8A' } }
+                                                    y: {
+                                                        beginAtZero: true,
+                                                        title: { display: true, text: 'CO2 (ton)', color: '#1f2937', font: { size: 10 } },
+                                                        ticks: { color: '#1f2937', font: { size: 10 } }
+                                                    },
+                                                    x: {
+                                                        title: { display: true, text: 'Kategori', color: '#1f2937', font: { size: 10 } },
+                                                        ticks: { color: '#1f2937', font: { size: 10 } }
+                                                    }
                                                 },
                                                 plugins: {
                                                     legend: { display: false },
-                                                    tooltip: { backgroundColor: '#1E3A8A', bodyColor: '#ffffff' }
+                                                    tooltip: { backgroundColor: '#fff', borderColor: '#1f2937', borderWidth: 1, bodyColor: '#1f2937', bodyFont: { size: 10 } }
                                                 }
                                             }}
                                         />
@@ -912,60 +917,60 @@ const AutomotiveCalculator = () => {
                             </div>
 
                             {/* Tablo */}
-                            <div className="overflow-x-auto mb-8">
-                                <table className="w-full text-left border-collapse">
+                            <div className="overflow-x-auto mb-4">
+                                <table className="w-full text-left text-sm border border-gray-200">
                                     <thead>
-                                    <tr className="bg-blue-100 text-blue-900">
-                                        <th className="p-4 font-semibold">Kategori</th>
-                                        <th className="p-4 font-semibold">CO2 (kg)</th>
-                                        <th className="p-4 font-semibold">m³</th>
+                                    <tr className="bg-gray-100">
+                                        <th className="p-2 font-medium text-gray-900">Kategori</th>
+                                        <th className="p-2 font-medium text-gray-900">CO2 (ton)</th>
+                                        <th className="p-2 font-medium text-gray-900">m³</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Elektrik</td>
-                                        <td className="p-4">{results.electricityCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.electricityM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Elektrik</td>
+                                        <td className="p-2">{((results.electricityCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.electricityM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Doğal Gaz</td>
-                                        <td className="p-4">{results.naturalGasCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.naturalGasM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Doğal Gaz</td>
+                                        <td className="p-2">{((results.naturalGasCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.naturalGasM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Su</td>
-                                        <td className="p-4">{results.waterCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.waterM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Su</td>
+                                        <td className="p-2">{((results.waterCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.waterM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Hammadde Kullanımı</td>
-                                        <td className="p-4">{results.rawUsageCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.rawUsageM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Hammadde</td>
+                                        <td className="p-2">{((results.rawUsageCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.rawUsageM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Hammadde Taşıma</td>
-                                        <td className="p-4">{results.rawTransportationCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.rawTransportationM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Hammadde Taşıma</td>
+                                        <td className="p-2">{((results.rawTransportationCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.rawTransportationM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Araç Dağıtımı</td>
-                                        <td className="p-4">{results.vehicleDistributionCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.vehicleDistributionM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Araç Dağıtımı</td>
+                                        <td className="p-2">{((results.vehicleDistributionCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.vehicleDistributionM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Atık ve Fire</td>
-                                        <td className="p-4">{results.wasteCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.wasteM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Atık</td>
+                                        <td className="p-2">{((results.wasteCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.wasteM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="border-b border-blue-200">
-                                        <td className="p-4">Personel Ulaşımı</td>
-                                        <td className="p-4">{results.staffTransportationCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.staffTransportationM3?.toFixed(2)}</td>
+                                    <tr className="border-b border-gray-200">
+                                        <td className="p-2">Personel Ulaşımı</td>
+                                        <td className="p-2">{((results.staffTransportationCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.staffTransportationM3 || 0).toFixed(2)}</td>
                                     </tr>
-                                    <tr className="font-semibold bg-blue-50">
-                                        <td className="p-4">Toplam</td>
-                                        <td className="p-4">{results.totalCO2?.toFixed(2)}</td>
-                                        <td className="p-4">{results.totalM3?.toFixed(2)}</td>
+                                    <tr className="font-medium bg-gray-100">
+                                        <td className="p-2">Toplam</td>
+                                        <td className="p-2">{((results.totalCO2 || 0) / 1000).toFixed(2)}</td>
+                                        <td className="p-2">{(results.totalM3 || 0).toFixed(2)}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -973,13 +978,13 @@ const AutomotiveCalculator = () => {
 
                             {/* Öneriler */}
                             <motion.div
-                                className="bg-blue-50 p-6 rounded-lg mb-8 border border-blue-200"
+                                className="bg-gray-50 p-3 rounded-md border border-gray-200"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ duration: 0.6, delay: 0.6 }}
+                                transition={{ duration: 0.4, delay: 0.6 }}
                             >
-                                <h3 className="text-lg font-semibold text-blue-900 mb-4">Emisyon Azaltma Önerileri</h3>
-                                <ul className="list-disc list-inside text-blue-700">
+                                <h4 className="text-xs font-semibold text-gray-900 mb-2">Emisyon Azaltım Önerileri</h4>
+                                <ul className="list-disc list-inside text-gray-600 text-xs">
                                     {getSuggestions().map((suggestion, index) => (
                                         <li key={index}>{suggestion}</li>
                                     ))}
@@ -988,21 +993,22 @@ const AutomotiveCalculator = () => {
 
                             {/* Butonlar */}
                             <motion.div
-                                className="flex flex-wrap justify-center gap-4"
+                                className="flex flex-wrap justify-end gap-2 mt-4"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ duration: 0.6, delay: 0.8 }}
+                                transition={{ duration: 0.4, delay: 0.8 }}
                             >
                                 <button
                                     onClick={handleSaveResults}
-                                    className="px-8 py-3 bg-green-700 text-white rounded-lg font-semibold hover:bg-green-800 transition-colors shadow-md"
+                                    className="px-4 py-1.5 bg-blue-800 text-white rounded-md text-sm font-semibold hover:bg-blue-900 transition"
                                 >
                                     Sonuçları Kaydet
                                 </button>
                                 <button
-                                    className="px-8 py-3 bg-yellow-700 text-white rounded-lg font-semibold hover:bg-yellow-800 transition-colors shadow-md"
+                                    onClick={() => alert('Rapor indirme özelliği geliştirme aşamasında.')}
+                                    className="px-4 py-1.5 bg-gray-600 text-white rounded-md text-sm font-semibold hover:bg-gray-700 transition"
                                 >
-                                    Premium Rapor İndir
+                                    Rapor İndir
                                 </button>
                             </motion.div>
                         </div>
@@ -1012,16 +1018,16 @@ const AutomotiveCalculator = () => {
                 {/* Navigasyon Butonları */}
                 {currentStep === 'results' && (
                     <motion.div
-                        className="flex justify-center mt-8"
+                        className="flex justify-end mt-4"
                         variants={buttonVariants}
                         whileHover="hover"
                         whileTap="tap"
                     >
                         <button
                             onClick={handleReset}
-                            className="px-8 py-3 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors shadow-md"
+                            className="px-4 py-1.5 bg-gray-600 text-white rounded-md text-sm font-semibold hover:bg-gray-700 transition"
                         >
-                            Yeni Hesaplama Yap
+                            Yeni Analiz
                         </button>
                     </motion.div>
                 )}

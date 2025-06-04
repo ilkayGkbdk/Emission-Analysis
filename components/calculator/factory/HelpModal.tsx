@@ -8,90 +8,90 @@ interface HelpModalProps {
     onClose: () => void
 }
 
-const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
+export default function HelpModal({ isOpen, onClose }: HelpModalProps) {
     if (!isOpen) return null
 
     const dataRequirements = [
         {
             category: 'Elektrik Tüketimi',
             description: 'Yıllık elektrik tüketimi (kWh veya MWh cinsinden).',
-            source: 'Elektrik faturalarınızdan veya enerji yönetim sistemlerinizden temin edebilirsiniz.'
+            source: 'Enerji faturaları veya tesis enerji yönetim sistemleri.'
         },
         {
             category: 'Doğal Gaz Tüketimi',
             description: 'Yıllık doğal gaz tüketimi (m³ cinsinden).',
-            source: 'Doğal gaz faturalarınızdan veya tesis yönetim kayıtlarından alınabilir.'
+            source: 'Doğal gaz faturaları veya tesis yönetim sistemleri.'
         },
         {
             category: 'Su Tüketimi',
             description: 'Yıllık su tüketimi (m³ veya litre cinsinden).',
-            source: 'Su faturalarınızdan veya su sayaç kayıtlarından elde edebilirsiniz.'
+            source: 'Su faturaları veya sayaç kayıtları.'
         },
         {
-            category: 'Hammadde Kullanımı',
-            description: 'Çelik, alüminyum, plastik ve kaplama kimyasalları kullanımı (ton cinsinden).',
-            source: 'Üretim raporları, satın alma kayıtları veya envanter yönetim sistemlerinden temin edilebilir.'
+            category: 'Hammadde Tüketimi',
+            description: 'Çelik, alüminyum, plastik ve kaplama kimyasalları tüketimi (ton cinsinden).',
+            source: 'Üretim raporları, satın alma veya envanter kayıtları.'
         },
         {
             category: 'Hammadde Taşıma',
-            description: 'Kara, deniz ve demiryolu taşımaları (ton-km cinsinden).',
-            source: 'Lojistik departmanı raporları veya nakliye firmalarından alınan verilerle hesaplanabilir.'
+            description: 'Kara, deniz ve demiryolu taşıma yükleri (ton-km cinsinden).',
+            source: 'Lojistik raporları veya nakliye firması verileri.'
         },
         {
             category: 'Araç Dağıtımı',
-            description: 'Kara, deniz ve demiryolu dağıtım mesafeleri (ton-km cinsinden).',
-            source: 'Dağıtım lojistik kayıtları veya üçüncü taraf lojistik firmalarından alınabilir.'
+            description: 'Kara, deniz ve demiryolu dağıtım yükleri (ton-km cinsinden).',
+            source: 'Dağıtım lojistik kayıtları veya üçüncü taraf nakliye verileri.'
         },
         {
             category: 'Atık ve Fire',
-            description: 'Metal, plastik ve kimyasal atık miktarları (ton cinsinden).',
-            source: 'Atık yönetim raporları veya geri dönüşüm firmalarından temin edilebilir.'
+            description: 'Metal, plastik ve kimyasal atık miktarı (ton cinsinden).',
+            source: 'Atık yönetim raporları veya geri dönüşüm firması verileri.'
         },
         {
             category: 'Personel Ulaşımı',
             description: 'Bireysel ve şirket ulaşım mesafeleri (km cinsinden).',
-            source: 'Personel ulaşım anketleri, şirket araç kayıtları veya insan kaynakları verilerinden alınabilir.'
+            source: 'Personel ulaşım anketleri, şirket araç kayıtları veya İK verileri.'
         }
     ]
 
     return (
         <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
             <motion.div
-                className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto"
-                initial={{ scale: 0.8, y: 50 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.8, y: 50 }}
+                className="bg-white rounded-md shadow-md p-6 max-w-md w-full mx-4 max-h-[70vh] overflow-y-auto"
+                initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
             >
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold text-blue-900">Gerekli Veriler ve Temin Yöntemleri</h2>
+                <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900">Veri Gereksinimleri</h3>
                     <button
                         onClick={onClose}
-                        className="text-blue-900 hover:text-blue-700 text-xl font-bold"
+                        className="text-gray-900 hover:text-gray-700 text-lg font-bold"
                     >
                         ×
                     </button>
                 </div>
-                <p className="text-blue-700 mb-6">
-                    Karbon ayak izi hesaplaması için aşağıdaki verilere ihtiyacınız bulunmaktadır. Her veri, fabrikanızın çevresel etkisini doğru bir şekilde analiz etmek için kritik öneme sahiptir.
+                <p className="text-sm text-gray-600 mb-4">
+                    Karbon ayak izi analizi için aşağıdaki veriler gereklidir. Doğru veri sağlanması, sonuçların güvenilirliğini artırır.
                 </p>
-                <div className="space-y-6">
+                <div className="space-y-3">
                     {dataRequirements.map((item, index) => (
-                        <div key={index} className="border-b border-blue-200 pb-4">
-                            <h3 className="text-lg font-semibold text-blue-900">{item.category}</h3>
-                            <p className="text-blue-700"><strong>Açıklama:</strong> {item.description}</p>
-                            <p className="text-blue-700"><strong>Nereden Temin Edilir:</strong> {item.source}</p>
+                        <div key={index} className="border-b border-gray-200 pb-2">
+                            <h4 className="text-sm font-semibold text-gray-900">{item.category}</h4>
+                            <p className="text-xs text-gray-600"><strong>Açıklama:</strong> {item.description}</p>
+                            <p className="text-xs text-gray-600"><strong>Kaynak:</strong> {item.source}</p>
                         </div>
                     ))}
                 </div>
-                <div className="mt-8 flex justify-end">
+                <div className="mt-4 flex justify-end">
                     <button
                         onClick={onClose}
-                        className="px-6 py-2 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors shadow-md"
+                        className="px-3 py-1.5 bg-gray-700 text-white rounded-md text-sm font-semibold hover:bg-gray-800 transition"
                     >
                         Kapat
                     </button>
@@ -100,5 +100,3 @@ const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         </motion.div>
     )
 }
-
-export default HelpModal
